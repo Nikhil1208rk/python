@@ -1,0 +1,74 @@
+import random
+your_score = 0
+computer_score = 0
+print("Do you want to play the game yes or no :- ")
+m= input("enter your input")
+if m == "no":
+  print("succesfully exit")
+
+
+else:
+    print("---start the game---")
+    print("1 for rock ")
+    print("2 for paper ")
+    print("3 for scissors ")
+    print("---------------------------------------------------------------------------")
+
+round = 0
+
+while round < 6 :
+
+    choices = random.choice(["rock", "paper", "scissors"])
+
+    #rock
+
+    n = int(input("enter your no. according to your move:-"))
+    if n < 1 or n > 3:
+        print("Invalid choice")
+        continue
+    print("computer move= ",choices)
+    if choices == "rock" and n==1:
+        print("match tie")
+    elif n==2 and choices == "rock":
+            your_score+=1
+            print ("you won")
+
+    elif n==3 and choices == "rock":
+            computer_score+=1
+            print("computer won, try again ")
+    #paper
+    elif choices == "paper" and n==2:
+        print("match tie")
+    elif n==3 and choices == "paper":
+            your_score += 1
+            print("you won")
+
+    elif n==1 and choices == "paper":
+            computer_score += 1
+            print("computer won, try again ")
+    #scissors
+    elif choices == "scissors" and n==3:
+        print("match tie")
+    elif n==2 and choices == "scissors":
+            computer_score += 1
+            print("computer won, try again ")
+    elif n==1 and choices == "scissors":
+                your_score += 1
+                print("you won")
+    print("Your score:", your_score)
+    print("Computer score:", computer_score)
+    round += 1
+
+print("-------------------------------------------")
+print("GAME OVER")
+print("Your final score:", your_score)
+print("Computer final score:", computer_score)
+
+if your_score > computer_score:
+    print("You are the winner!")
+
+elif computer_score > your_score:
+    print("Computer is the winner!")
+
+else:
+    print("The game is a tie!")
