@@ -1,0 +1,22 @@
+import random
+x = random.randrange(1,10)
+while True:
+ print("start the game:-")
+ print("----------------------------------------------------------------")
+ n = int(input("ENTER the your no. "))
+ if n == x:
+
+    print("computer choice:- ",x)
+    print("you won the game")
+    break
+
+ elif n > x:
+
+    print("computer choice:- ", x)
+    print("your no. is high , try again :")
+
+ else :
+
+    print("computer choice:- ", x)
+    print("your no. is low , try again :")
+ print("----------------------------------------------------------------")
