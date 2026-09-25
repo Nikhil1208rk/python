@@ -1,0 +1,465 @@
+import numpy as np
+
+
+# ============================================================
+# 1. NUMPY BASICS
+# ============================================================
+
+# Creating a 1D array
+a = np.array([10, 20, 30, 40, 50])
+print(a)
+print(a.ndim)
+print(a.size)
+print(a.dtype)
+
+# Creating a 2D array
+a = np.array([
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+])
+print(a)
+
+
+# ============================================================
+# 2. ARRAY CREATION FUNCTIONS
+# ============================================================
+
+print(np.zeros(5))
+print(np.ones(4))
+print(np.full(4, 50))
+
+print(np.arange(1, 10, 2))
+print(np.linspace(1, 32, 7))
+
+
+# ============================================================
+# 3. INDEXING
+# ============================================================
+
+a = np.array([
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+])
+
+print(a[1, 1])
+print(a[2, 2])
+print(a[0, 1])
+
+print(a[0])       # First row
+print(a[:, 0])    # First column
+print(a[-2:])     # Last two rows
+
+
+# ============================================================
+# 4. SLICING
+# ============================================================
+
+revenue = np.array([12000, 135000, 142000, 150000, 165000, 172000])
+
+print(revenue[2])
+print(revenue[-1])
+print(revenue[2:6])
+
+prices = np.array([500, 750, 1200, 1500, 2000, 2500])
+print(prices[:2])
+print(prices[-2:])
+
+
+# ============================================================
+# 5. RESHAPE AND ARRAY PROPERTIES
+# ============================================================
+
+a = np.arange(1, 13)
+
+print(a)
+print(a.reshape(3, 4))
+
+a = np.arange(1, 13).reshape(3, 4)
+
+print(a.shape)
+print(a.size)
+print(a.ndim)
+print(a[-1])
+print(a[:, 2])
+
+
+# ============================================================
+# 6. ARITHMETIC OPERATIONS
+# ============================================================
+
+a = np.array([10, 20, 30, 40, 50])
+
+print(a + 5)
+print(a * 2)
+print(a - 10)
+print(a / 10)
+
+a = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+
+b = np.array([
+    [10, 11, 12],
+    [13, 14, 15],
+    [16, 17, 18]
+])
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a // b)
+
+
+# ============================================================
+# 7. PRACTICE - REAL-LIFE ARRAY OPERATIONS
+# ============================================================
+
+# Add bonus marks
+marks = np.array([65, 72, 80, 88, 91])
+bonus = 5
+updated_marks = marks + bonus
+print(marks)
+print(updated_marks)
+
+# GST calculation
+prices = np.array([200, 350, 540, 500])
+prices_with_gst = prices * 1.18
+print(prices_with_gst)
+
+# Discount calculation
+prices = np.array([100, 250, 400, 550, 800])
+discount = prices * 0.10
+price_after_discount = prices - discount
+print(price_after_discount)
+
+# Celsius to Fahrenheit
+celsius = np.array([0, 10, 20, 30, 40])
+fahrenheit = 9 / 5 * celsius + 32
+print(fahrenheit)
+
+# Expected increase in sales
+sales = np.array([125000, 148000, 135000, 172000])
+expected_sales = 1.15 * sales
+print(expected_sales)
+
+# Tuple to NumPy array
+marks_tuple = (78, 85, 92, 67, 88)
+marks_array = np.array(marks_tuple)
+print(marks_array + 3)
+
+
+# ============================================================
+# 8. STATISTICAL FUNCTIONS
+# ============================================================
+
+a = np.array([10, 20, 30, 40, 50])
+
+print(np.max(a))
+print(np.min(a))
+print(np.sum(a))
+print(np.mean(a))
+
+temperature = np.array([
+    28.5, 31.2, 29.8, 35.6, 38.1,
+    40.2, 27.9, 30.5, 42.3, 39.8
+])
+
+print(np.mean(temperature))
+print(np.median(temperature))
+print(np.max(temperature))
+print(np.min(temperature))
+print(np.std(temperature))
+print(np.var(temperature))
+
+
+# ============================================================
+# 9. BOOLEAN FILTERING
+# ============================================================
+
+marks = np.array([45, 34, 6, 56, 35, 7, 45, 7, 8])
+
+print(marks[marks > 9])
+print(marks > 40)
+
+selected_marks = marks[marks < 50]
+print(selected_marks)
+print(selected_marks + 5)
+
+
+# ============================================================
+# 10. np.where()
+# ============================================================
+
+marks = np.array([12, 25, 8, 40, 55, 3, 70])
+
+print(np.where(marks > 10))
+
+prices = np.array([5000, 1200, 800, 2500, 1500])
+discounted_prices = np.where(prices > 1000, prices * 0.9, prices)
+print(discounted_prices)
+
+sales = np.array([950000, 650000, 300000, 800000, 450000])
+
+performance = np.where(
+    sales >= 800000,
+    "top performer",
+    np.where(sales >= 500000, "good performer", "needs improvement")
+)
+print(performance)
+
+
+# ============================================================
+# 11. COMPOUND CONDITIONS
+# ============================================================
+
+salary = np.array([60000, 75000, 55000, 30000])
+credit_score = np.array([720, 750, 680, 710])
+
+result = np.where(
+    (salary >= 50000) & (credit_score >= 720),
+    "approve",
+    "reject"
+)
+print(result)
+
+orders = np.array([500, 1200, 700, 800, 1500])
+premium_customer = np.array([False, False, True, False, True])
+
+delivery = np.where(
+    (orders >= 1000) | (premium_customer == True),
+    "free delivery",
+    "not a free delivery"
+)
+print(delivery)
+
+
+# ============================================================
+# 12. MULTI-DIMENSIONAL DATA
+# ============================================================
+
+marks = np.array([
+    [72, 85, 90, 78],
+    [65, 70, 75, 80],
+    [88, 92, 95, 90],
+    [55, 65, 60, 70],
+    [78, 82, 85, 88]
+])
+
+print(marks.ndim)
+print(marks.shape)
+print(marks.size)
+print(marks[2])
+print(marks[:, 1])
+print(marks[0:3, 1])
+
+
+# ============================================================
+# 13. UPDATING ARRAY VALUES
+# ============================================================
+
+prices = np.array([120, 180, 250, 300, 450, 600])
+
+prices[:2] = prices[:2] + 20
+print(prices)
+
+prices[2:6] = prices[2:6] - prices[2:6] * 0.10
+print(prices)
+
+a = np.full((4, 5), 100)
+a[:2] += 20
+a[2:, :] = a[2:, :] - a[2:, :] * 0.10
+
+print(a)
+print(a[:, 3])
+
+
+# ============================================================
+# 14. 2D ARRAY PRACTICE
+# ============================================================
+
+sales = np.array([
+    [120, 150, 180],
+    [100, 130, 160],
+    [200, 220, 250]
+])
+
+print(sales[1])
+
+sales[2] = sales[2] * 1.10
+print(sales)
+
+sales[0, 0] = 135
+print(sales)
+
+
+# ============================================================
+# 15. EMPLOYEE DATA PRACTICE
+# ============================================================
+
+employees = np.array([
+    [101, 42000, 3, 450000],
+    [102, 65000, 6, 720000],
+    [103, 38000, 2, 300000],
+    [104, 90000, 8, 950000],
+    [105, 55000, 5, 610000],
+    [106, 72000, 7, 830000]
+])
+
+print(employees[:, 1])  # Salary
+print(employees[:, 2])  # Experience
+print(employees[:, 3])  # Revenue
+
+revenue_salary_ratio = employees[:, 3] / employees[:, 1]
+print(revenue_salary_ratio)
+
+print(np.max(employees[:, 3]))
+
+selected_employees = employees[
+    (employees[:, 2] >= 5) & (employees[:, 1] > 60000)
+]
+print(selected_employees)
+
+
+# ============================================================
+# 16. AXIS OPERATIONS
+# ============================================================
+
+a = np.array([
+    [10, 20, 30],
+    [40, 50, 60]
+])
+
+print(np.sum(a, axis=0))  # Column-wise
+print(np.sum(a, axis=1))  # Row-wise
+
+
+# ============================================================
+# 17. RANDOM NUMBERS
+# ============================================================
+
+print(np.random.randint(1, 51, 5))
+print(np.random.randint(1, 21, (2, 3)))
+
+
+# ============================================================
+# 18. BROADCASTING
+# ============================================================
+
+a = np.array([
+    [10, 20, 30],
+    [40, 50, 60]
+])
+
+b = np.array([1, 2, 3])
+
+print(a + b)
+
+a = np.array([
+    [10, 20, 30],
+    [40, 50, 60]
+])
+
+print(a * 10)
+
+
+# ============================================================
+# 19. TRANSPOSE
+# ============================================================
+
+a = np.array([
+    [10, 20, 30],
+    [40, 50, 60]
+])
+
+print(a.T)
+
+
+# ============================================================
+# 20. UNIQUE AND SORT
+# ============================================================
+
+a = np.array([10, 30, 20, 10, 40, 30, 20])
+
+print(np.unique(a))
+print(np.sort(a))
+
+
+# ============================================================
+# 21. COPY
+# ============================================================
+
+a = np.array([10, 20, 30])
+
+b = a.copy()
+b[0] = 100
+
+print(a)
+print(b)
+
+
+# ============================================================
+# 22. FLATTEN AND RAVEL
+# ============================================================
+
+a = np.array([
+    [1, 2],
+    [3, 4]
+])
+
+flattened = a.flatten()
+raveled = np.ravel(a)
+
+print(flattened)
+print(raveled)
+
+# flatten() creates a copy
+flattened[0] = 100
+print(a)
+print(flattened)
+
+
+# ============================================================
+# 23. MATRIX MULTIPLICATION
+# ============================================================
+
+a = np.array([
+    [1, 2],
+    [3, 4]
+])
+
+b = np.array([
+    [5, 6],
+    [7, 8]
+])
+
+print(np.dot(a, b))
+print(a @ b)
+
+
+# ============================================================
+# 24. FINAL NUMPY PRACTICE
+# ============================================================
+
+# Practice 1: Create an array from 1 to 20 and find its mean.
+practice_1 = np.arange(1, 21)
+print(np.mean(practice_1))
+
+# Practice 2: Find all values greater than 10.
+print(practice_1[practice_1 > 10])
+
+# Practice 3: Reshape the array into 4 rows and 5 columns.
+practice_2 = practice_1.reshape(4, 5)
+print(practice_2)
+
+# Practice 4: Find row-wise and column-wise sums.
+print(np.sum(practice_2, axis=0))
+print(np.sum(practice_2, axis=1))
+
+# Practice 5: Add [1, 2, 3, 4, 5] to every row.
+practice_3 = practice_2 + np.array([1, 2, 3, 4, 5])
+print(practice_3)
